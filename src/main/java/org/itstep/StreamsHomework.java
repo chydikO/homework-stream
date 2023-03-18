@@ -31,18 +31,24 @@ public class StreamsHomework {
     static double ex02() {
     	// TODO: Задание 2
     	// Найти средний возраст всех мужчин
-        IntSummaryStatistics stats = students.stream()
+        IntSummaryStatistics statistics = students.stream()
                 .filter(student -> student.getGender() == Gender.MAN)
                 .mapToInt((student) -> student.getAge())
                 .summaryStatistics();
-    	return stats.getAverage();
+    	return statistics.getAverage();
     }
     static long ex03() {
     	// TODO: Задание 3
     	// Найти кол-во потенциально работоспособных 
     	// студентов в выборке (т.е. от 18 лет и учитывая 
     	// что женщины выходят в 55 лет, а мужчина в 60)
-    	return 0;
+        IntSummaryStatistics statistics = students.stream()
+                .filter(student -> student.getAge() >= 18)
+                .filter(student -> student.getGender() == Gender.MAN && student.getAge() < 60
+                || student.getGender() == Gender.WOMEN && student.getAge() < 55)
+                .mapToInt((student) -> student.getAge())
+                .summaryStatistics();
+    	return statistics.getCount();
     }
     
     static List<Student> ex04() {
