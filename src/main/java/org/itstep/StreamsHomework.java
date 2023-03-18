@@ -51,7 +51,9 @@ public class StreamsHomework {
     static List<Student> ex04() {
     	// TODO: Задание 4    	
     	// Отсортировать студентов по имени в обратном алфавитном порядке
-    	return null;
+    	return students.stream().
+                sorted(Comparator.comparing(Student::getName)).
+                collect(Collectors.toList());
     }
     
     static Student ex05() {
@@ -69,6 +71,8 @@ public class StreamsHomework {
     
     public static void main(String[] args) {
 		// TODO: тестировать здесь
-        	System.out.println(ex04());
+            for (Student student: ex04() ) {
+            System.out.println(student);
+        }
     }
 } 
