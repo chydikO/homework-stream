@@ -16,62 +16,63 @@ public class StreamsHomework {
             new Student("Елена", 42, Gender.WOMEN),
             new Student("Иван Иванович", 69, Gender.MAN)
     );
-    
+
     static List<Student> ex01() {
-    	// TODO: Задание 1
+        // TODO: Задание 1
         // выбрать всех мужчин от 18-27 лет включительно
         return students.stream()
                 .filter(student -> student.getAge() >= 18 && student.getAge() <= 27 && student.getGender() == Gender.MAN)
                 .collect(Collectors.toList());
     }
-    
+
     static double ex02() {
-    	// TODO: Задание 2
-    	// Найти средний возраст всех мужчин
+        // TODO: Задание 2
+        // Найти средний возраст всех мужчин
         IntSummaryStatistics statistics = students.stream()
                 .filter(student -> student.getGender() == Gender.MAN)
-                .mapToInt((student) -> student.getAge())
+                .mapToInt(Student::getAge)
                 .summaryStatistics();
-    	return statistics.getAverage();
+        return statistics.getAverage();
     }
+
     static long ex03() {
-    	// TODO: Задание 3
-    	// Найти кол-во потенциально работоспособных 
-    	// студентов в выборке (т.е. от 18 лет и учитывая 
-    	// что женщины выходят в 55 лет, а мужчина в 60)
+        // TODO: Задание 3
+        // Найти кол-во потенциально работоспособных
+        // студентов в выборке (т.е. от 18 лет и учитывая
+        // что женщины выходят в 55 лет, а мужчина в 60)
         IntSummaryStatistics statistics = students.stream()
                 .filter(student -> student.getAge() >= 18)
                 .filter(student -> student.getGender() == Gender.MAN && student.getAge() < 60
-                || student.getGender() == Gender.WOMEN && student.getAge() < 55)
-                .mapToInt((student) -> student.getAge())
+                        || student.getGender() == Gender.WOMEN && student.getAge() < 55)
+                .mapToInt(Student::getAge)
                 .summaryStatistics();
-    	return statistics.getCount();
+        return statistics.getCount();
     }
-    
+
     static List<Student> ex04() {
-    	// TODO: Задание 4    	
-    	// Отсортировать студентов по имени в обратном алфавитном порядке
-    	return students.stream().
+        // TODO: Задание 4
+        // Отсортировать студентов по имени в обратном алфавитном порядке
+        return students.stream().
                 sorted(Comparator.comparing(Student::getName)).
                 collect(Collectors.toList());
     }
-    
+
     static Student ex05() {
-    	//  TODO: Задание 5
-    	//  найти самого старшего студента
-    	return students.stream().max(Comparator.comparing(Student::getAge)).get();
+        //  TODO: Задание 5
+        //  найти самого старшего студента
+        return students.stream().max(Comparator.comparing(Student::getAge)).get();
     }
-    
+
     static Student ex06() {
-    	// TODO: Задание 6
-    	// Найти самого младшего студента
-    	return students.stream().min(Comparator.comparing(Student::getAge)).get();
+        // TODO: Задание 6
+        // Найти самого младшего студента
+        return students.stream().min(Comparator.comparing(Student::getAge)).get();
 
     }
-    
+
     public static void main(String[] args) {
-		// TODO: тестировать здесь
-            for (Student student: ex04() ) {
+        // TODO: тестировать здесь
+        for (Student student : ex04()) {
             System.out.println(student);
         }
     }
