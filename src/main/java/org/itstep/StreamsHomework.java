@@ -1,9 +1,6 @@
 package org.itstep;
 
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.IntSummaryStatistics;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class StreamsHomework {
@@ -60,13 +57,14 @@ public class StreamsHomework {
     static Student ex05() {
     	//  TODO: Задание 5
     	//  найти самого старшего студента
-    	return null;
+    	return students.stream().max(Comparator.comparing(Student::getAge)).get();
     }
     
     static Student ex06() {
     	// TODO: Задание 6
     	// Найти самого младшего студента
-    	return null;
+    	return students.stream().min(Comparator.comparing(Student::getAge)).get();
+
     }
     
     public static void main(String[] args) {
